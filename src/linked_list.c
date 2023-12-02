@@ -33,6 +33,21 @@ void LinkedList_add_first(LinkedList *L, int val){
     L->begin = p;
 }
 
+void LinkedList_add_last(LinkedList *L, int val){
+    SNode *q = SNode_create(val);
+    if (L->begin == NULL) {
+        L->begin = q;
+    } 
+    else {
+        SNode *p = L->begin;
+        while (p->next != NULL) {
+            p = p->next;
+        } 
+        p->next = q;
+       
+    }
+}
+
 void LinkedList_print(const LinkedList *L){
     SNode *p = L->begin;
     printf("L -> ");

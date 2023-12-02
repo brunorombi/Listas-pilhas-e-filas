@@ -10,7 +10,9 @@ int main() {
     LinkedList_add_first(L, 2);
     LinkedList_add_first(L, 10);
 
+    LinkedList_add_last(L, 6);
     LinkedList_print(L);
+
 
     return 0;
 }
