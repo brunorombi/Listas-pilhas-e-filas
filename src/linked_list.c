@@ -29,15 +29,15 @@ SNode *SNode_create(int val){
     return p;
 }
 
-void LinkedList_add_first(LinkedList *L, int val){
-    SNode *p = SNode_create(val);
-    p->next = L->begin;
-    L->begin = p;
-}
+// void LinkedList_add_first(LinkedList *L, int val){
+//     SNode *p = SNode_create(val);
+//     p->next = L->begin;
+//     L->begin = p;
+// }
 
 void LinkedList_add_last_slow(LinkedList *L, int val){
     SNode *q = SNode_create(val);
-    if (L->begin == NULL) {
+    if (LinkedList_is_empty(L)) {
         L->begin = q;
     } 
     else {
@@ -52,7 +52,7 @@ void LinkedList_add_last_slow(LinkedList *L, int val){
 
 void LinkedList_add_last(LinkedList *L, int val){
     SNode *q = SNode_create(val);
-    if (L->begin == NULL) {
+    if (LinkedList_is_empty(L)) {
         L->begin = L->end = q;
     } 
     else {
@@ -69,4 +69,19 @@ void LinkedList_print(const LinkedList *L){
         p = p->next;
     }
     printf("NULL");
+}
+
+void LinkedList_add_first(LinkedList *L, int val){
+    SNode *p = SNode_create(val);
+    p->next = L->begin;
+
+    if(LinkedList_is_empty(L)){
+        L->end = p;
+    }
+    
+    L->begin = p;
+}
+
+bool LinkedList_is_empty(const LinkedList *L){
+    return (L->begin == NULL && L->end == NULL);
 }
