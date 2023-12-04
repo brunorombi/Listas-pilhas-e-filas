@@ -68,7 +68,7 @@ void LinkedList_print(const LinkedList *L){
         printf("%d -> ", p->val);
         p = p->next;
     }
-    printf("NULL");
+    printf("NULL\n");
 }
 
 void LinkedList_add_first(LinkedList *L, int val){
@@ -85,3 +85,39 @@ void LinkedList_add_first(LinkedList *L, int val){
 bool LinkedList_is_empty(const LinkedList *L){
     return (L->begin == NULL && L->end == NULL);
 }
+
+void LinkedList_remove(LinkedList *L, int val) {
+    if(!LinkedList_is_empty(L)) { 
+        if(L->begin->val == val) {
+            SNode *pos = L->begin;
+
+            if (L->begin == L->end) {
+                L->end = NULL;
+            }
+            L->begin = L->begin->next;
+            free(pos);
+        }
+        else {
+            SNode *prev = L->begin;
+            SNode *pos = L->begin->next;
+
+            while(pos->val != val && pos != NULL) {
+                prev = prev->next;
+                pos = pos->next;
+            }
+            if(pos != NULL) {
+                prev->next = pos->next;
+            
+                if(pos->next == NULL) {
+                    L->end = prev;
+                }
+                free(pos);
+            }
+        }
+    }
+}
+
+
+        
+
+    
