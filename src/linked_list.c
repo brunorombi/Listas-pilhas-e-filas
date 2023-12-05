@@ -11,12 +11,14 @@ typedef struct _snode {
 typedef struct _linked_list {
     SNode *begin;
     SNode *end;
+    size_t size;
 } LinkedList;
 
 LinkedList *LinkedList_create(){
     LinkedList *L = (LinkedList *) calloc(1, sizeof(LinkedList));
     L->begin = NULL;
     L->end = NULL;
+    L->size = 0;
 
     return L;
 }
@@ -24,7 +26,7 @@ LinkedList *LinkedList_create(){
 SNode *SNode_create(int val){
     SNode *p = (SNode*) calloc (1, sizeof(SNode));
     p->val = val;
-    p->next = NULL;
+    p->next = NULL; 
 
     return p;
 }
@@ -46,8 +48,9 @@ void LinkedList_add_last_slow(LinkedList *L, int val){
             p = p->next;
         } 
         p->next = q;
-       
     }
+
+    L->size++;
 }
 
 void LinkedList_add_last(LinkedList *L, int val){
@@ -59,16 +62,21 @@ void LinkedList_add_last(LinkedList *L, int val){
         L->end->next = q;
         L->end = q; 
     }
+
+    L->size++;
 }
 
 void LinkedList_print(const LinkedList *L){
     SNode *p = L->begin;
+
     printf("L -> ");
+
     while(p != NULL){
         printf("%d -> ", p->val);
         p = p->next;
     }
     printf("NULL\n");
+    printf("Size: %zu\n", L->size);
 }
 
 void LinkedList_add_first(LinkedList *L, int val){
@@ -80,10 +88,11 @@ void LinkedList_add_first(LinkedList *L, int val){
     }
     
     L->begin = p;
+    L->size++;
 }
 
 bool LinkedList_is_empty(const LinkedList *L){
-    return (L->begin == NULL && L->end == NULL);
+    return L->size == 0;
 }
 
 void LinkedList_remove(LinkedList *L, int val) {
@@ -96,6 +105,8 @@ void LinkedList_remove(LinkedList *L, int val) {
             }
             L->begin = L->begin->next;
             free(pos);
+
+            L->size--;
         }
         else {
             SNode *prev = L->begin;
@@ -112,6 +123,7 @@ void LinkedList_remove(LinkedList *L, int val) {
                     L->end = prev;
                 }
                 free(pos);
+                L->size--;
             }
         }
     }
@@ -146,4 +158,6 @@ size_t LinkedList_size_slow(const LinkedList *L){
 
 }
 
-    
+size_t LinkedList_size(const LinkedList *L){
+    return L->size;
+}

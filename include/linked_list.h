@@ -17,6 +17,7 @@ void LinkedList_print(const LinkedList *L);
 bool LinkedList_is_empty(const LinkedList *L);
 void LinkedList_remove(LinkedList *L, int val);
 size_t LinkedList_size_slow(const LinkedList *L);
+size_t LinkedList_size(const LinkedList *L);
 
 
 #endif 

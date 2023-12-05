@@ -33,6 +33,7 @@ int main() {
     // printf("L == NULL: %d\n", L == NULL);
 
     printf("Tamanho da lista: %zu \n", LinkedList_size_slow(L));
+    printf("tamanho da lista: %zu\n", LinkedList_size(L));
 
     return 0;
 }
