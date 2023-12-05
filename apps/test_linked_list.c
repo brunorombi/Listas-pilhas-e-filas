@@ -29,7 +29,10 @@ int main() {
     LinkedList_remove(L, 8);
     LinkedList_print(L);
 
-    LinkedList_destroy(&L);
-    printf("L == NULL: %d\n", L == NULL);
+    // LinkedList_destroy(&L);
+    // printf("L == NULL: %d\n", L == NULL);
+
+    printf("Tamanho da lista: %zu \n", LinkedList_size_slow(L));
+
     return 0;
 }

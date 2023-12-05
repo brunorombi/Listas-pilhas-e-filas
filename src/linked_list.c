@@ -132,6 +132,18 @@ void LinkedList_destroy(LinkedList **L_ref){
     *L_ref = NULL;
 }
 
+size_t LinkedList_size_slow(const LinkedList *L){
+    size_t size = 0;
+    if(!LinkedList_is_empty(L)) {
+        SNode *p = L->begin;
         
+        while(p != NULL){
+            size++;
+            p = p->next;
+        }
+    }
+    return size;
+
+}
 
     
