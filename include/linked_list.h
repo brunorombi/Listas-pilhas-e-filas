@@ -18,6 +18,9 @@ bool LinkedList_is_empty(const LinkedList *L);
 void LinkedList_remove(LinkedList *L, int val);
 size_t LinkedList_size_slow(const LinkedList *L);
 size_t LinkedList_size(const LinkedList *L);
+int LinkedList_first_val(const LinkedList *L);
+int LinkedList_last_val(const LinkedList *L);
+int LinkedList_get_val(const LinkedList *L, unsigned index);
 
 
 #endif 

@@ -161,3 +161,30 @@ size_t LinkedList_size_slow(const LinkedList *L){
 size_t LinkedList_size(const LinkedList *L){
     return L->size;
 }
+
+int LinkedList_first_val(const LinkedList *L){
+    if(!LinkedList_is_empty(L)){
+        return L->begin->val;
+    }
+    exit(EXIT_FAILURE);
+}    
+
+int LinkedList_last_val(const LinkedList *L){
+    if(!LinkedList_is_empty(L)){
+        return L->end->val;
+    }
+    exit(EXIT_FAILURE);
+}
+
+int LinkedList_get_val(const LinkedList *L, unsigned index){
+    if(!LinkedList_is_empty(L)) {
+        int i = 0;
+        SNode *p = L->begin;
+
+        while (i != index && p != L->end->next){
+                p = p->next;
+                i++;
+            }
+            return p->val;
+    }
+}
