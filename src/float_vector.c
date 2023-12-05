@@ -22,20 +22,11 @@ bool _FloatVector_isFull(const FloatVector *vec){
 
 
 FloatVector *FloatVector_create(int capacity) {
-    FloatVector *vec = (FloatVector *)calloc(1, sizeof(FloatVector));
-    if (vec == NULL) {
-        fprintf(stderr, "Memory allocation failed\n");
-        exit(EXIT_FAILURE);
-    }
-
+    FloatVector *vec = (FloatVector *)calloc(1, sizeof(FloatVector));  
     vec->capacity = capacity;
     vec->size = 0;
     vec->data = (float *)calloc(capacity, sizeof(float));
-    if (vec->data == NULL) {
-        fprintf(stderr, "Memory allocation failed\n");
-        exit(EXIT_FAILURE);
-    }
-
+   
     return vec;
 }
 
@@ -119,4 +110,16 @@ FloatVector *FloatVector_clone(FloatVector *vec) {
         vec_clone->data[i] = vec->data[i]; 
     }
     return vec_clone;
+}
+
+
+void FloatVector_remove (FloatVector *vec) {
+    if (vec->size > 0) {
+        free(vec->data[vec->size-1]);
+        vec->size--;
+    }
+    else {
+        printf("vetor esta cheio");
+        return -1;
+    } 
 }

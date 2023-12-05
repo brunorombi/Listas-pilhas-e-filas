@@ -117,6 +117,20 @@ void LinkedList_remove(LinkedList *L, int val) {
     }
 }
 
+void LinkedList_destroy(LinkedList **L_ref){
+    LinkedList *L = *L_ref;
+
+    SNode *p = L->begin;
+    SNode *aux = NULL;
+    while(p != NULL) {
+        aux = p;
+        p = p->next;
+        free(aux);
+    }
+    free(L);
+
+    *L_ref = NULL;
+}
 
         
 

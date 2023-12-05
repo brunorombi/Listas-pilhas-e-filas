@@ -1,5 +1,5 @@
 #include "linked_list.h"
-
+#include <stdio.h>
 
 int main() {
 
@@ -28,5 +28,8 @@ int main() {
 
     LinkedList_remove(L, 8);
     LinkedList_print(L);
+
+    LinkedList_destroy(&L);
+    printf("L == NULL: %d\n", L == NULL);
     return 0;
 }
